@@ -24,7 +24,7 @@ class NetworkUtil {
       PointLatLng destination,
       TravelMode travelMode,
       List<PolylineWayPoint> wayPoints,
-      {AvoidFilter filters = AvoidFilter.all},
+      AvoidFilter filters,
       bool optimizeWaypoints) async {
     String mode = travelMode.toString().replaceAll('TravelMode.', '');
     PolylineResult result = PolylineResult();
