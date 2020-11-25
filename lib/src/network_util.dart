@@ -35,7 +35,7 @@ class NetworkUtil {
     }else if(filters == AvoidFilter.highways){
       avoid = "highways";
     }else if(filters == AvoidFilter.tolls){
-      avoid = "tolls"
+      avoid = "tolls";
     }else{
       avoid = "ferries";
     }
