@@ -31,13 +31,13 @@ class NetworkUtil {
     String avoid = "";
     
     if(filters == AvoidFilter.all){
-      avoid = "highways|tolls|ferries"
+      avoid = "highways|tolls|ferries";
     }else if(filters == AvoidFilter.highways){
-      avoid = "highways"
+      avoid = "highways";
     }else if(filters == AvoidFilter.tolls){
       avoid = "tolls"
     }else{
-      avoid = "ferries"
+      avoid = "ferries";
     }
     
     var params = {
