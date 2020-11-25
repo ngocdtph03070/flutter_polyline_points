@@ -7,6 +7,12 @@ import 'package:http/http.dart' as http;
 
 import 'utils/polyline_result.dart';
 
+enum AvoidFilter{
+  highways,
+  tolls,
+  ferries,
+  all
+}
 class NetworkUtil {
   static const String STATUS_OK = "ok";
 
@@ -18,19 +24,27 @@ class NetworkUtil {
       PointLatLng destination,
       TravelMode travelMode,
       List<PolylineWayPoint> wayPoints,
-      bool avoidHighways,
-      bool avoidTolls,
-      bool avoidFerries,
+      {AvoidFilter filters = AvoidFilter.all},
       bool optimizeWaypoints) async {
     String mode = travelMode.toString().replaceAll('TravelMode.', '');
     PolylineResult result = PolylineResult();
+    String avoid = "";
+    
+    if(filters == AvoidFilter.all){
+      avoid = "highways|tolls|ferries"
+    }else if(filters == AvoidFilter.highways){
+      avoid = "highways"
+    }else if(filters == AvoidFilter.tolls){
+      avoid = "tolls"
+    }else{
+      avoid = "ferries"
+    }
+    
     var params = {
       "origin": "${origin.latitude},${origin.longitude}",
       "destination": "${destination.latitude},${destination.longitude}",
       "mode": mode,
-      "avoidHighways": "$avoidHighways",
-      "avoidFerries": "$avoidFerries",
-      "avoidTolls": "$avoidTolls",
+      "avoid": "$avoid",
       "key": googleApiKey
     };
     if (wayPoints.isNotEmpty) {
